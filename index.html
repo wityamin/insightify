@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insightify</title>
+    <!-- Link to Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Enforce the 4:3 aspect ratio */
+        .container-fluid {
+            max-width: 1200px; /* Optional: Limit maximum width */
+            min-width: 640px; /* Optional: Limit minimum width */
+            display: flex;
+            flex-direction: row;
+            background-color: white;
+            height: 100vh;
+        }
+        .task-section, .connection-section {
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Left Section (2/3 for Task Description) -->
+        <div class="task-section col-8 p-3 border-end">
+            <h1>Insightify</h1>
+            <p>This tool tries to help you to make better tasks for ...</p>
+            <div class="mb-3">
+                <label for="taskDescription" class="form-label">Task Description</label>
+                <textarea id="taskDescription" class="form-control" rows="6" placeholder="Enter task description here..."></textarea>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button id="generateResponseBtn" class="btn btn-primary">Generate Response</button>
+            </div>
+
+            <div>
+                <h3>Key components of a well-specified task:</h3>
+                <ul>
+                    <li><strong>Title:</strong> A brief, clear label summarizing the task.</li>
+                    <li><strong>Description:</strong> A detailed explanation of what needs to be done to complete the task, including any technical specifics.
+                    <li><strong>Acceptance Criteria (or Definition of Done - DoD):</strong> The conditions that must be met for the task to be considered complete and acceptable.
+                    <li><strong>Estimation:</strong> An effort estimate, usually in story points, ideal days, or another unit of measure.
+                    <li><strong>Priority:</strong> The relative importance of the task, often categorized as High, Medium, or Low.
+                    <li><strong>Dependencies:</strong> Any other tasks, stories, or external factors that must be completed or available before this task can be worked on.
+                    <li><strong>Assumptions:</strong> Any conditions or assumptions that are being made for the task (e.g., existing infrastructure, services, or configurations).
+                    <li><strong>Notes/Comments:</strong> Any additional relevant information, such as links to documentation, design mockups, or important reminders.
+                    <li><strong>Task Owner:</strong> The person or team responsible for completing the task.
+                    <li><strong>Timebox (Optional):</strong> A maximum time allocated for completing the task, if applicable.
+                </ul>
+            </div>
+
+            <div>
+                <h3>Key Characteristics of a task:</h5>
+                <ul>
+                    <li><strong>Clear:</strong> The task should be easily understood and actionable by the person who owns it.</li>
+                    <li><strong>Small and Specific:</strong> A good task is small enough to be completed within a reasonable time frame (e.g., a few hours or a day) and focuses on a specific, actionable step.</li>
+                    <li><strong>Testable:</strong> The task should have clear acceptance criteria that specify when it is complete and functioning as expected.</li>
+                    <li><strong>Actionable:</strong> The task should describe a concrete action or outcome, rather than a vague or broad requirement.</li>
+                    <li><strong>Estimate-able:</strong> The task should be something the team can estimate the effort for, ensuring better sprint planning and tracking.</li>
+                    <li><strong>Prioritized:</strong> The task should have a priority level to help the team focus on what's most important.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Right Section (1/3 for Connection Details and Chat Configuration) -->
+        <div class="connection-section col-4 p-3">
+            <h2>Connection Details</h2>
+            <form id="connectionDetailsForm">
+                <div class="mb-3">
+                    <label for="url" class="form-label">URL</label>
+                    <input type="text" class="form-control" id="url" placeholder="Enter URL">
+                </div>
+                <div class="mb-3">
+                    <label for="key" class="form-label">API Key</label>
+                    <input type="text" class="form-control" id="key" placeholder="Enter API Key">
+                </div>
+                <div class="mb-3">
+                    <label for="model" class="form-label">Model</label>
+                    <input type="text" class="form-control" id="model" value="4o">
+                </div>
+                <div class="mb-3">
+                    <label for="version" class="form-label">API Version</label>
+                    <input type="text" class="form-control" id="version" value="2024-05-15">
+                </div>
+            </form>
+
+            <h2>Chat Configuration</h2>
+            <div class="mb-3">
+                <label for="chatConfig" class="form-label">Configuration</label>
+                <textarea id="chatConfig" class="form-control" rows="4" placeholder="Enter chat configuration here..."></textarea>
+            </div>
+
+            <h2>Response</h2>
+            <div class="mb-3">
+                <label for="response" class="form-label">Response</label>
+                <textarea id="response" class="form-control" rows="6" readonly placeholder="Response will appear here..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Handle response generation when the button is clicked
+        document.getElementById('generateResponseBtn').addEventListener('click', function () {
+            const taskDescription = document.getElementById('taskDescription').value;
+            const url = document.getElementById('url').value;
+            const key = document.getElementById('key').value;
+            const model = document.getElementById('model').value;
+            const version = document.getElementById('version').value;
+            const chatConfig = document.getElementById('chatConfig').value;
+
+            if (taskDescription.trim() === "") {
+                alert("Please enter a task description.");
+                return;
+            }
+
+            // Simulate a response generation (replace this with actual API call)
+            const responseText = `Generated response for task: "${taskDescription}" with model ${model} and version ${version}.`;
+
+            // Display the generated response in the response text box
+            document.getElementById('response').value = responseText;
+        });
+    </script>
+</body>
+
+</html>
